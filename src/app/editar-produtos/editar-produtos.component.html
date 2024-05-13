@@ -1,0 +1,39 @@
+<div class="m-3">
+    <h2>Editar produto</h2>
+    <p>Utilize o formulário para editar um produto</p>
+    <hr/>
+
+    <div class="mb-2 text-success">
+        <strong>{{mensagem}}</strong>
+    </div>
+
+    <form [formGroup]="formEdicao" (ngSubmit)="onSubmit()">
+
+        <input type="hidden" formControlName="id">
+
+        <div class="row mb-2">
+            <div class="col">
+                <label>Nome do produto:</label>
+                <input type="text" class="form-control" formControlName="nome"/>
+            </div>
+            <div class="col">
+                <label>Preço do produto:</label>
+                <input type="text" class="form-control" formControlName="preco">
+            </div>
+            <div class="col">
+                <label>Quantidade do produto</label>
+                <input type="number" min="0" class="form-control" formControlName="quantidade">
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col">
+                <input type="submit" [disabled]="!formEdicao.valid" class="btn btn-success" value="Salvar alterações">
+                &nbsp;
+                <a routerLink="/consultar-produtos" class="btn btn-light">Ir para consulta</a>
+            </div>
+        </div>
+
+
+    </form>
+</div>

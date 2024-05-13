@@ -1,0 +1,61 @@
+<div class="m-3">
+    <h2>Cadastro de produto</h2>
+    <p>Preencha o formulário para incluir um produto</p>
+    <hr/>
+
+    <div class="mb-2 text-success">
+        <strong>{{mensagem}}</strong>
+    </div>
+
+    <form [formGroup]="formCadastro" (ngSubmit)="onSubmit()">
+
+        <div class="row mb-2">
+            <div class="col">
+                <label>Nome do produto:</label>
+                <input type="text" class="form-control" formControlName="nome"/>
+                <div *ngIf="form.nome.touched && form.nome.invalid" class="text-danger">
+                    <div *ngIf="form.nome.errors.required">
+                        <P>Informe o nome do produto.</P>
+                    </div>
+                    <div *ngIf="form.nome.errors.minlength">
+                        <p>Informe no mínimo 3 caracteres.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <label>Preço do produto:</label>
+                <input type="text" class="form-control" formControlName="preco">
+                <div *ngIf="form.preco.touched && form.preco.invalid" class="text-danger">
+                    <div *ngIf="form.preco.errors.required">
+                        <P>Informe o preço do produto.</P>
+                    </div>
+                    <div *ngIf="form.preco.errors.minlength">
+                        <p>Informe o preço maior ou igual a 1.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <label>Quantidade do produto</label>
+                <input type="number" min="0" class="form-control" formControlName="quantidade">
+                <div *ngIf="form.quantidade.touched && form.quantidade.invalid" class="text-danger">
+                    <div *ngIf="form.quantidade.errors.required">
+                        <P>Informe a quantidade do produto.</P>
+                    </div>
+                    <div *ngIf="form.quantidade.errors.minlength">
+                        <p>Informe a quantidade maior ou igual a 1.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col">
+                <input type="submit" [disabled]="!formCadastro.valid" class="btn btn-success" value="Realizar cadastro">
+                &nbsp;
+                <a routerLink="/consultar-produtos" class="btn btn-light">Ir para consulta</a>
+            </div>
+        </div>
+
+
+    </form>
+</div>
